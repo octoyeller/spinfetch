@@ -59,19 +59,19 @@ void Binary::set_version () {
     release = "none";
 
 #if defined(__i386__) || defined(_M_IX86)
-    architecture = "x32";
+    architecture = "x86_32";
 #endif
 
 #if defined(__x86_64__) || defined(_M_X64)
-    architecture = "x64";
+    architecture = "x86_64";
 #endif
 
 #if defined(__arm__) || defined(_M_ARM)
-    architecture = "ARM x32";
+    architecture = "ARM_x32";
 #endif
 
 #if defined(__aarch64__) || defined(_M_ARM64)
-    architecture = "ARM x64";
+    architecture = "ARM_x64";
 #endif
 
 }
