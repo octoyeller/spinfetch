@@ -7,4 +7,4 @@ Here you can find all the information about the program that you may need.
 - \[[Configuration](https://github.com/octoyeller/spinfetch/blob/main/docs/configure.md)\] - what files, where, what to put in them
 - \[[Usage](https://github.com/octoyeller/spinfetch/blob/main/docs/use.md)\] - tutorial on how to flex with this thing
 - \[[Reporting issues](https://github.com/octoyeller/spinfetch/blob/main/docs/issues.md)\] - found a bug? Report it!
-- <p align="justify">\[[For develepors](https://github.com/octoyeller/spinfetch/blob/main/docs/code/)\] - explanation of what is going up here for those who whish modify this software</p>
+- \[[For develepors](https://github.com/octoyeller/spinfetch/blob/main/docs/code/)\] - explanation of what is going up here for those who whish modify this software

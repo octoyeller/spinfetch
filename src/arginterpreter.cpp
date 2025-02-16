@@ -26,6 +26,36 @@ void Arg_interpreter::sort_arguments () {
 
 
 
+void Arg_interpreter::set_exit_command () {
+
+    exit_command = 'c';
+
+    for (char &cur : options) {
+        switch (cur) {
+            case 'h':
+                exit_command = 'h';
+                return;
+                break;
+            case 's':
+                exit_command = 's';
+                break;
+            case 'v':
+                exit_command = 'v';
+                break;
+            default:
+                break;
+        }
+    }
+
+}
+
+
+char Arg_interpreter::get_exit_command () {
+    return exit_command;
+}
+
+
+
 Arg_interpreter::Arg_interpreter (int &argc, char **argv) {
 
     if (argc <= 1) {

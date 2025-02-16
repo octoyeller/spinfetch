@@ -9,11 +9,25 @@ int main (int argc, char **argv) {
 
     Binary binary;
     binary.set_version ();
-    binary.print_version ();
 
     Arg_interpreter arg_interpreter (argc, argv);
-        std::cout << arg_interpreter.arguments.size () << '\n' << arg_interpreter.files_parsed.size () << '\n' << arg_interpreter.options.size () << std::endl;
+    arg_interpreter.set_exit_command ();
 
-    
+    switch (arg_interpreter.get_exit_command ()) {
+        case 'h':
+            std::cout << "Help" << std::endl;
+            return 0;
+            break;
+        case 'v':
+            binary.print_version ();
+            return 0;
+            break;
+        case 's':
+            break;
+        default:
+            break;
+    }
+
+
 
 return 0;}
