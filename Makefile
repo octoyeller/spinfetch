@@ -4,6 +4,12 @@ CF = -std=c++23 -Wall
 
 clean:
 	rm build/*
+setup:
+	mkdir build
+install: setup build
+	cp spinfetch.bin /usr/local/bin/spinfetch
+
+
 
 build: main.o console.o binary.o
 	$(CC) $(CF) -o spinfetch.bin build/*
