@@ -11,7 +11,7 @@ install: setup build
 
 
 
-build: main.o console.o binary.o
+build: main.o console.o binary.o arginterpreter.o
 	$(CC) $(CF) -o spinfetch.bin build/*
 
 
@@ -23,3 +23,6 @@ console.o:
 
 binary.o:
 	$(CC) $(CF) src/binary.cpp -c -o build/binary.o
+
+arginterpreter.o:
+	$(CC) $(CF) src/arginterpreter.cpp -c -o build/arginterpreter.o
