@@ -1,5 +1,5 @@
 CC = g++
-CF = -std=c++23 -Wall
+CF = -std=c++23 -Wall -O3 -funroll-loops -static
 
 
 clean:
@@ -11,7 +11,7 @@ install: setup build
 
 
 
-build: main.o console.o binary.o arginterpreter.o infofetch.o
+build: main.o console.o binary.o arginterpreter.o infofetch.o printer.o
 	$(CC) $(CF) -o spinfetch.bin build/*
 
 
@@ -29,3 +29,6 @@ arginterpreter.o:
 
 infofetch.o:
 	$(CC) $(CF) src/infofetch.cpp -c -o build/infofetch.o
+
+printer.o:
+	$(CC) $(CF) src/printer.cpp -c -o build/printer.o
