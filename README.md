@@ -1,33 +1,7 @@
 # Spinfetch
 
-Spining ascii art animation in your console fetching os info
+Spinfetch is a command line tool for displaying information about your operating system alongside an ascii art animation. It is writen entirely in C++ and is highly configurable and works on most systems. If you want to flex harder with you system's console, this is the way to go.
 
+![Image](https://github.com/octoyeller/spinfetch/blob/head/spinfetch.png)
 
-# Usage
-
-
-# Installation
-
-### Build from source
-
-Requirements:
-- Linux OS
-- `git`
-- `make`
-- `g++`
-- Central Processing Unit
-- 16MB of free disk space
-
-Installation:
-- go to a directory you wish to store this repo
-- `git clone https://github.com/octoyeller/spinfetch`
-- `cd spinfetch`
-- `sudo make install`
-
-### Precompiled package
-
-Releases are not available yet.
-
-
-
-# Configuration
+Spinfetch supports all Linux operating systems, that meet the requirements. See \[[Documentation](https://github.com/octoyeller/spinfetch/blob/main/docs/)\] and \[[Releases](https://github.com/octoyeller/spinfetch/blob/main/releases/)\].
