@@ -4,4 +4,4 @@
 
 ![Image](https://github.com/octoyeller/spinfetch/blob/main/spinfetch.png)
 
-<p align="justify">Spinfetch supports all Linux operating systems, that meet the requirements. See <a href="https://github.com/octoyeller/spinfetch/blob/main/docs">Documentation</a> and \[[Releases](https://github.com/octoyeller/spinfetch/blob/main/releases/)\].</p>
+<p align="justify">Spinfetch supports all Linux operating systems, that meet the requirements. See <a href="https://github.com/octoyeller/spinfetch/blob/main/docs">Documentation</a> and <a href="https://github.com/octoyeller/spinfetch/blob/main/releases">Releases</a>.</p>
