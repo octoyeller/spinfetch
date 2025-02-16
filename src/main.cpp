@@ -6,12 +6,9 @@
 int main (int argc, char **argv) {
 
     Console console;
-    std::cout << "width " << console.get_width() << '\n' << "height " << console.get_height() << std::endl;
-
 
     Binary binary;
-    std::cout << "name " << binary.get_name () << "\ndir " << binary.get_directory () << "\npath " << binary.get_path () << std::endl;
-
+    binary.print_version ();
 
 
 return 0;}

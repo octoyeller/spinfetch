@@ -52,6 +52,57 @@ bool Binary::find_me () {
 }
 
 
+
+void Binary::set_version () {
+
+    version = "v0.1";
+    release = "none";
+
+#if defined(__i386__) || defined(_M_IX86)
+    architecture = "x32";
+#endif
+
+#if defined(__x86_64__) || defined(_M_X64)
+    architecture = "x64";
+#endif
+
+#if defined(__arm__) || defined(_M_ARM)
+    architecture = "ARM x32";
+#endif
+
+#if defined(__aarch64__) || defined(_M_ARM64)
+    architecture = "ARM x64";
+#endif
+
+}
+
+
+
+
+std::string Binary::get_version () {
+    return version;
+}
+
+
+std::string Binary::get_release () {
+    return release;
+}
+
+
+std::string Binary::get_architecture () {
+    return architecture;
+}
+
+
+void Binary::print_version () {
+    std::cout << "Spinfetch!\n";
+    std::cout << "Version: " << get_version() << "\nRlease: " << get_release() << "\nArchitecture: " << get_architecture() << '\n';
+    std::cout << "Maintainer: Alexander Yell\nSource: https://github.com/octoyeller/spinfetch/\n";
+    std::cout << "Located at: " << get_path() << std::endl;
+}
+
+
+
 Binary::Binary () {
 
     successed = find_me ();
