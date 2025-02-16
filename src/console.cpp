@@ -14,6 +14,7 @@ bool Console::set_size () {
 
 
     if (e < 0) {
+        perror ("ioctl");
         return false;
     }
 
