@@ -29,3 +29,13 @@ Additional:
 - Execution time
 - Favourite app or thing
 - Random message
+
+
+
+# The way
+
+Fetch os info
+Load frames
+Crop
+Display
+Animate
