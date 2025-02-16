@@ -1,7 +1,7 @@
 # Spinfetch
 
-Spinfetch is a command line tool for displaying information about your operating system alongside an ascii art animation. It is writen entirely in C++ and is highly configurable and works on most systems. If you want to flex harder with you system's console, this is the way to go.
+<p align="justify">Spinfetch is a command line tool for displaying information about your operating system alongside an ascii art animation. Spinfetch is highly configurable and works on most of the systems. If you want to flex harder with you system's console, this is the way to go. Spinfetch is writen entirely in C++, it is fast and looks good.</p>
 
-![Image](https://github.com/octoyeller/spinfetch/blob/head/spinfetch.png)
+![Image](https://github.com/octoyeller/spinfetch/blob/main/spinfetch.png)
 
-Spinfetch supports all Linux operating systems, that meet the requirements. See \[[Documentation](https://github.com/octoyeller/spinfetch/blob/main/docs/)\] and \[[Releases](https://github.com/octoyeller/spinfetch/blob/main/releases/)\].
+<p align="justify">Spinfetch supports all Linux operating systems, that meet the requirements. See \[[Documentation](https://github.com/octoyeller/spinfetch/blob/main/docs/)\] and \[[Releases](https://github.com/octoyeller/spinfetch/blob/main/releases/)\].</p>
