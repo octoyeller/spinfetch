@@ -108,7 +108,7 @@ Binary::Binary () {
     successed = find_me ();
 
     if (!successed) {
-        std::cout << "Failed to fetch path to the binary." << std::endl;
+        std::cerr << "Failed to fetch path to the binary." << std::endl;
     }
     
 }

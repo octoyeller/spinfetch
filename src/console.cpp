@@ -28,7 +28,7 @@ bool Console::set_size () {
 Console::Console () {
     successed = set_size ();
     if (!successed) {
-        std::cout << "Failed fetching console size" << std::endl;
+        std::cerr << "Failed fetching console size" << std::endl;
     }
 }
 
