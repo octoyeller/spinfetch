@@ -1,0 +1,47 @@
+#include <string>
+
+
+
+class OS_info {
+
+    public:
+    class System {
+        bool successed;
+        std::string username;
+        std::string hostname;
+        std::string name;
+        std::string release;
+        std::string codename;
+        std::string kernel;
+
+        public:
+        void set_username ();
+        void set_hostname ();
+        bool set_os ();
+
+        std::string get_username ();
+        std::string get_hostname ();
+        std::string get_name ();
+        std::string get_release ();
+        std::string get_codename ();
+        std::string get_kernel ();
+
+  //      System ();
+    };
+    System system;
+
+
+    class Hardware {
+        std::string name;
+
+        public:
+        
+
+        std::string get_name ();
+    };
+    Hardware hardware;
+
+
+    public:
+//    OS_info ();
+};

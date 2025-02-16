@@ -11,7 +11,7 @@ install: setup build
 
 
 
-build: main.o console.o binary.o arginterpreter.o
+build: main.o console.o binary.o arginterpreter.o infofetch.o
 	$(CC) $(CF) -o spinfetch.bin build/*
 
 
@@ -26,3 +26,6 @@ binary.o:
 
 arginterpreter.o:
 	$(CC) $(CF) src/arginterpreter.cpp -c -o build/arginterpreter.o
+
+infofetch.o:
+	$(CC) $(CF) src/infofetch.cpp -c -o build/infofetch.o

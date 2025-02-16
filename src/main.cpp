@@ -2,6 +2,12 @@
 #include "console.h"
 #include "arginterpreter.h"
 #include "binary.h"
+#include "infofetch.h"
+
+
+
+
+
 
 int main (int argc, char **argv) {
 
@@ -27,6 +33,19 @@ int main (int argc, char **argv) {
         default:
             break;
     }
+
+
+
+
+
+
+
+    OS_info os_info;
+    os_info.system.set_username ();
+    os_info.system.set_hostname ();
+    std::cout << os_info.system.get_username () << '\n' << os_info.system.get_hostname () << std::endl;
+    os_info.system.set_os ();
+    std::cout << os_info.system.get_kernel () << std::endl;
 
 
 
