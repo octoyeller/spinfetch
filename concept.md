@@ -8,20 +8,21 @@ Animation:
 - Crop system info or frame
 
 System info:
-- username
-- hostname
-- OS
-- system/kernel version
-- uptime
-- display
-- cpu
-- gpu
-- ram
-- disks
-- ip
-- shell
-- theme
-- desktop environment
+- [ ] username
+- [ ] hostname
+- [ ] OS
+- [ ] system/kernel version
+- [ ] uptime
+- [ ] display
+- [ ] cpu
+- [ ] gpu
+- [ ] ram
+- [ ] disks
+- [ ] ip
+- [ ] shell
+- [ ] theme
+- [ ] desktop environment
+- [ ] battery
 
 Additional:
 - Custom text
