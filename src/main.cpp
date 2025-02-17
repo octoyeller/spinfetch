@@ -3,6 +3,7 @@
 #include "arginterpreter.h"
 #include "binary.h"
 #include "infofetch.h"
+#include "fileloader.h"
 
 
 
@@ -46,6 +47,9 @@ int main (int argc, char **argv) {
     std::cout << os_info.system.get_username () << '\n' << os_info.system.get_hostname () << std::endl;
     os_info.system.set_os ();
     std::cout << os_info.system.get_kernel () << std::endl;
+    
+
+    File_loader file_loader (os_info.system.get_username (), false, binary.get_path (), arg_interpreter.get_files_parsed ());
 
 
 
