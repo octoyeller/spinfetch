@@ -1,4 +1,5 @@
 #include "fileloader.h"
+#include "console.h"
 #include <fstream>
 #include <iostream>
 
@@ -19,7 +20,9 @@ File_loader::File_loader (std::string username, bool search_only, std::filesyste
 
     if (!std::filesystem::exists (user_conf_dir)) {
         std::cout << "No config files in default directory. Default configuration will be generated. If you parsed any files, these will be used instead.\nDefault config directory: " << user_conf_dir.string () << "\nPress `Q` to abort, anyother key to continue." << std::endl;
-        if (getchar () == 'q' || getchar () == 'Q') {
+
+        char c = getch ();
+        if (c == 'q' || c == 'Q') {
             std::cout << "\rAbort!" << std::endl;
             exit (0);
         }

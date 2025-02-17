@@ -2,7 +2,7 @@ CC = g++
 # Deploy flags
 CF = -std=c++23 -Wall -O3 -funroll-loops -static -flto
 # Development flags
-CF = -std=c++23 -Wall -O0 -lstdc++   
+CF = -std=c++23 -Wall -O0 #-lstdc++   
 
 
 clean:
@@ -46,3 +46,10 @@ printer.o:
 
 fileloader.o:
 	$(CC) $(CF) src/fileloader.cpp -c -o build/fileloader.o
+
+
+
+
+
+test:
+	$(CC) $(CF) test.cpp -o test
