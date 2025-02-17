@@ -56,6 +56,12 @@ char Arg_interpreter::get_exit_command () {
 
 
 
+std::vector<std::filesystem::path> Arg_interpreter::get_files_parsed () {
+    return files_parsed;
+}
+
+
+
 Arg_interpreter::Arg_interpreter (int &argc, char **argv) {
 
     if (argc <= 1) {

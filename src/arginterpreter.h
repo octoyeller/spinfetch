@@ -22,6 +22,7 @@ public:
 
     void set_exit_command ();
     char get_exit_command ();
+    std::vector<std::filesystem::path> get_files_parsed ();
     Arg_interpreter (int &argc, char **argv);
 
 };
