@@ -2,6 +2,8 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <iostream>
+#include <termios.h>
+
 
 
 
@@ -39,4 +41,28 @@ unsigned Console::get_width () {
 
 unsigned Console::get_height () {
     return height;
+}
+
+
+
+// ai code but works compared to everything else
+char getch () {
+    struct termios oldt, newt;
+    char ch;
+
+    // Get the current terminal settings
+    tcgetattr (STDIN_FILENO, &oldt);
+    newt = oldt;
+
+    // Disable canonical and echo
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    ch = getchar ();
+
+
+    // Restore the old terminal settings
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+    return ch;
 }
