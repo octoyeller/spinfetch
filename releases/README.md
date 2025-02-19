@@ -8,6 +8,3 @@ Supported:
 
 Not yet:
 - `win_x64`
-- `win_x32`
-- `win_ARM`
-- `win_ARM32`
