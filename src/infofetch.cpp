@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
+#include <sys/sysinfo.h>
 #include <sys/utsname.h>
 #include <filesystem>
 #include <fstream>
@@ -106,3 +107,39 @@ std::string OS_info::System::get_kernel () {
     return kernel;
 }
 
+
+
+
+
+
+
+int OS_info::Uptime::get_days () {
+    return days;
+}
+
+int OS_info::Uptime::get_hours () {
+    return hours;
+}
+
+int OS_info::Uptime::get_minutes () {
+    return minutes;
+}
+
+bool OS_info::Uptime::set_time () {
+
+    struct sysinfo si;
+    if (sysinfo (&si) != 0) {
+        std::cerr << "Failed to get uptime." << std::endl;
+        return false;
+    }
+
+    days = si.uptime / 60 / 60 / 24;
+    hours = si.uptime / 60 / 60 - days * 24;
+    minutes = si.uptime / 60 - days * 24 - hours * 60;
+
+    return true;
+}
+
+OS_info::Uptime::Uptime () {
+    set_time ();
+}

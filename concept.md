@@ -12,7 +12,7 @@ System info:
 - [x] hostname
 - [x] OS
 - [x] system/kernel version
-- [ ] uptime
+- [x] uptime
 - [ ] display
 - [ ] cpu
 - [ ] gpu

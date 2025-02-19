@@ -42,6 +42,25 @@ class OS_info {
     Hardware hardware;
 
 
+
+
+    class Uptime {
+        int days;
+        int hours;
+        int minutes;
+
+        public:
+        int get_days ();
+        int get_hours ();
+        int get_minutes ();
+
+        bool set_time ();
+        Uptime ();
+    };
+    Uptime uptime;
+
+
+
     public:
 //    OS_info ();
 };
