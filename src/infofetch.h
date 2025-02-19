@@ -33,11 +33,17 @@ class OS_info {
 
     class Hardware {
         std::string name;
+        int battery_percent;
+        std::string battery_status;
 
         public:
-        
+        bool set_battery ();
+
 
         std::string get_name ();
+        int get_battery_percent ();
+        std::string get_battery_status ();
+
     };
     Hardware hardware;
 

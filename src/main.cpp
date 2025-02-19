@@ -42,12 +42,15 @@ int main (int argc, char **argv) {
 
 
     OS_info os_info;
-   std::cout << "D " << os_info.uptime.get_days() << "\nH " << os_info.uptime.get_hours () << "\nM " << os_info.uptime.get_minutes() << std::endl; 
+    std::cout << "D " << os_info.uptime.get_days() << "\nH " << os_info.uptime.get_hours () << "\nM " << os_info.uptime.get_minutes() << std::endl; 
     os_info.system.set_username ();
     os_info.system.set_hostname ();
     std::cout << os_info.system.get_username () << '\n' << os_info.system.get_hostname () << std::endl;
     os_info.system.set_os ();
     std::cout << os_info.system.get_kernel () << std::endl;
+    os_info.hardware.set_battery ();
+    std::cout << "Battery " << os_info.hardware.get_battery_percent () << "% " << os_info.hardware.get_battery_status () << std::endl;
+
     
 
 
