@@ -8,10 +8,10 @@ Animation:
 - Crop system info or frame
 
 System info:
-- [ ] username
-- [ ] hostname
-- [ ] OS
-- [ ] system/kernel version
+- [x] username
+- [x] hostname
+- [x] OS
+- [x] system/kernel version
 - [ ] uptime
 - [ ] display
 - [ ] cpu
@@ -40,3 +40,16 @@ Load frames
 Crop
 Display
 Animate
+
+
+
+# Arguments
+v - version
+h - help
+u - update file
+a - add file
+s - scan files
+d - duration of animation
+i - interval of change
+f - use frame other than set in config
+
