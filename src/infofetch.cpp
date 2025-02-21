@@ -149,83 +149,74 @@ OS_info::Uptime::Uptime () {
 bool OS_info::Hardware::set_battery () {
 
 
-    std::filesystem::path main_dir = "/sys/class/power_supply";
-    if (!std::filesystem::exists (main_dir) || !std::filesystem::is_directory (main_dir)) {
+    // for BAT1 and BAT2 in the future
+    // if (!std::filesystem::exists ("/sys/class/power_supply/BAT0") || !std::filesystem::is_directory ("/sys/class/power_supply/BAT0")) {
+    //     return false;
+    // }
+
+
+    std::filesystem::path energy_full_path = "/sys/class/power_supply/BAT0/energy_full"; 
+    std::filesystem::path energy_now_path = "/sys/class/power_supply/BAT0/energy_now";
+    std::filesystem::path type_path = "/sys/class/power_supply/BAT0/type";
+    std::filesystem::path status_path = "/sys/class/power_supply/BAT0/status";
+
+    if (!std::filesystem::exists (energy_full_path) || !std::filesystem::exists (energy_now_path) || !std::filesystem::exists (type_path) || !std::filesystem::exists (status_path)) {
         return false;
-    }
-
-    std::vector <std::filesystem::path> devices_in_dir;
-    devices_in_dir.reserve (4);
-
-    for (std::filesystem::directory_entry cur_ent : std::filesystem::directory_iterator {main_dir}) {
-        if (std::filesystem::is_directory (cur_ent.path ())) {
-            devices_in_dir.emplace_back (cur_ent.path ());
-        }
-    }
-
-    std::filesystem::path enow_path, efull_path, stat_path;
-    for (unsigned i = 0; i < devices_in_dir.size (); ++i) {
-        if (
-            !std::filesystem::exists (devices_in_dir [i] / "energy_now") ||
-            !std::filesystem::exists (devices_in_dir [i] / "energy_full") ||
-            !std::filesystem::exists (devices_in_dir [i] / "status")
-        ) {
-            if (i == devices_in_dir.size () - 1) {
-                return false;
-            }
-            continue;
-        }
-
-        enow_path = devices_in_dir [i] / "energy_now";
-        efull_path = devices_in_dir [i] / "energy_full";
-        stat_path = devices_in_dir [i] / "status";
-        break;
     }
 
     
-    std::string file_cont;
-    std::fstream enow_f;
-    enow_f.open (enow_path, std::ios::in);
-    if (!enow_f.good ()) {
-        enow_f.close ();
+    std::fstream type;
+    std::string cur_line;
+    type.open (type_path, std::ios::in);
+    if (!type.good ()) {
+        std::cerr << "Failed reading battery type file." << std::endl;
+        type.close ();
         return false;
     }
-    int energy_now;
-    enow_f.seekg (0, std::ios::beg);
-    getline (enow_f, file_cont);
-    enow_f.close ();
-    energy_now = std::stoi (file_cont);
-
-
-    std::fstream efull_f;
-    efull_f.open (efull_path, std::ios::in);
-    if (!efull_f.good ()) {
-        efull_f.close ();
+    type.seekg (0, std::ios::beg);
+    getline (type, cur_line);
+    if (cur_line != "Battery") {
+        type.close ();
         return false;
     }
-    int energy_full;
-    efull_f.seekg (0, std::ios::beg);
-    getline (efull_f, file_cont);
-    efull_f.close ();
-    energy_full = std::stoi (file_cont);
 
 
-    std::fstream stat_f;
-    stat_f.open (stat_path, std::ios::in);
-    if (!stat_f.good ()) {
-        stat_f.close ();
+    std::fstream status;
+    status.open (status_path, std::ios::in);
+    if (!status.good ()) {
+        status.close ();
+        battery_status = "";
+    }
+    status.seekg (0, std::ios::beg);
+    getline (status, battery_status);
+    status.close ();
+
+
+    std::fstream energy_full;
+    energy_full.open (energy_full_path, std::ios::in);
+    if (!energy_full.good ()) {
+        energy_full.close ();
         return false;
     }
-    stat_f.seekg (0, std::ios::beg);
-    getline (stat_f, battery_status);
-    stat_f.close ();
+    energy_full.seekg (0, std::ios::beg);
+    getline (energy_full, cur_line);
+    energy_full.close ();
+    int bat_full = std::stoi (cur_line);
 
 
-    // /sys/class/power_supply/BAT/energy_now
-    // /sys/class/power_supply/BAT/energy_full
-    // /sys/class/power_supply/BAT/status
+    std::fstream energy_now;
+    energy_now.open (energy_now_path, std::ios::in);
+    if (!energy_now.good ()) {
+        energy_now.close ();
+        return false;
+    }
+    energy_now.seekg (0, std::ios::beg);
+    getline (energy_now, cur_line);
+    energy_now.close ();
+    int bat_now = std::stoi (cur_line);
 
-    battery_percent = energy_now / energy_full * 100;
+
+    battery_percent = bat_now / bat_full * 100;
 
     return true;
 }

@@ -13,9 +13,11 @@
 int main (int argc, char **argv) {
 
     Console console;
+    std::cout << console.get_height () << " x " << console.get_width () << std::endl;
 
     Binary binary;
     binary.set_version ();
+    binary.print_version ();
 
     Arg_interpreter arg_interpreter (argc, argv);
     arg_interpreter.set_exit_command ();
@@ -42,15 +44,16 @@ int main (int argc, char **argv) {
 
 
     OS_info os_info;
-    std::cout << "D " << os_info.uptime.get_days() << "\nH " << os_info.uptime.get_hours () << "\nM " << os_info.uptime.get_minutes() << std::endl; 
+    std::cout << os_info.uptime.get_days() << " days " << os_info.uptime.get_hours () << " hours " << os_info.uptime.get_minutes() << " minutes" << std::endl; 
     os_info.system.set_username ();
     os_info.system.set_hostname ();
-    std::cout << os_info.system.get_username () << '\n' << os_info.system.get_hostname () << std::endl;
     os_info.system.set_os ();
-    std::cout << os_info.system.get_kernel () << std::endl;
-    os_info.hardware.set_battery ();
-    std::cout << "Battery " << os_info.hardware.get_battery_percent () << "% " << os_info.hardware.get_battery_status () << std::endl;
-
+    std::cout << "u: " << os_info.system.get_username () << "\nh: " << os_info.system.get_hostname () << "\nn: " << os_info.system.get_name () << "\nr: " << os_info.system.get_release () << "\ncn: " << os_info.system.get_codename () << "\nk: " << os_info.system.get_kernel () << std::endl;
+    if (os_info.hardware.set_battery ()) {
+        std::cout << "Battery: " << os_info.hardware.get_battery_percent () << "% " << os_info.hardware.get_battery_status () << std::endl;
+    } else {
+        std::cout << "no battery" << std::endl;
+    }
     
 
 
