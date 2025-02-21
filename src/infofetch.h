@@ -39,6 +39,8 @@ class OS_info {
 
         public:
         bool set_battery ();
+        void obtain_battery ();
+        bool see_if_has_battery ();
 
 
         std::string get_name ();

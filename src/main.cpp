@@ -49,7 +49,8 @@ int main (int argc, char **argv) {
     os_info.system.set_hostname ();
     os_info.system.set_os ();
     std::cout << "u: " << os_info.system.get_username () << "\nh: " << os_info.system.get_hostname () << "\nn: " << os_info.system.get_name () << "\nr: " << os_info.system.get_release () << "\ncn: " << os_info.system.get_codename () << "\nk: " << os_info.system.get_kernel () << std::endl;
-    if (os_info.hardware.set_battery ()) {
+    os_info.hardware.obtain_battery ();
+    if (os_info.hardware.see_if_has_battery ()) {
         std::cout << "Battery: " << os_info.hardware.get_battery_percent () << "% " << os_info.hardware.get_battery_status () << std::endl;
     } else {
         std::cout << "no battery" << std::endl;

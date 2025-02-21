@@ -222,6 +222,16 @@ bool OS_info::Hardware::set_battery () {
 }
 
 
+void OS_info::Hardware::obtain_battery () {
+    has_battery = set_battery ();
+}
+
+
+bool OS_info::Hardware::see_if_has_battery () {
+    return has_battery;
+}
+
+
 int OS_info::Hardware::get_battery_percent () {
     return battery_percent;
 }
