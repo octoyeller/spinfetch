@@ -53,9 +53,13 @@ bool OS_info::System::set_os () {
     len = file_contents [1] .find_last_of ('\"') - first;
     name = file_contents [1].substr (first + 1, len - 1);
 
-    first = file_contents [2].find_first_of ('\"');
-    len = file_contents [2] .find_last_of ('\"') - first;
-    release = file_contents [2].substr (first + 1, len - 1);
+    if (name != "Arch Linux") {
+        first = file_contents [2].find_first_of ('\"');
+        len = file_contents [2] .find_last_of ('\"') - first;
+        release = file_contents [2].substr (first + 1, len - 1);
+    } else {
+        release = "Rolling";
+    }
 
     first = file_contents [4].find_first_of ('=');
     len = file_contents [4].length () - first;
