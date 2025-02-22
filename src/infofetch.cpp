@@ -243,3 +243,109 @@ int OS_info::Hardware::get_battery_percent () {
 std::string OS_info::Hardware::get_battery_status () {
     return battery_status;
 }
+
+
+
+
+
+
+bool OS_info::Hardware::set_ram () {
+
+
+    std::filesystem::path fpath = "/proc/meminfo";
+    if (!std::filesystem::exists (fpath)) {
+        return false;
+    }
+
+    std::fstream fmem;
+    fmem.open (fpath, std::ios::in);
+    if (!fmem.good ()) {
+        fmem.close ();
+        return false;
+    }
+    fmem.seekg (0, std::ios::beg);
+    std::string cur_line;
+    std::string fval [4];
+
+
+    while (getline (fmem, cur_line)) {
+        if (cur_line.substr (0, 9) == "MemTotal:") {
+            break;
+        }
+    }
+    fval [0] = cur_line;
+
+    while (getline (fmem, cur_line)) {
+        if (cur_line.substr (0, 7) == "Active:") {
+            break;
+        }
+    }
+    fval [1] = cur_line;
+
+    while (getline (fmem, cur_line)) {
+        if (cur_line.substr (0, 10) == "SwapTotal:") {
+            break;
+        }
+    }
+    fval [2] = cur_line;
+
+    while (getline (fmem, cur_line)) {
+        if (cur_line.substr (0, 9) == "SwapFree:") {
+            break;
+        }
+    }
+    fval [3] = cur_line;
+    fmem.close ();
+
+    
+    size_t start, end;
+    end = fval [0].find_last_of (' ');
+    start = fval [0].find_last_of (' ', end - 1);
+    ram_total = std::stoul (fval [0].substr (start + 1, end - start - 1));
+
+    end = fval [1].find_last_of (' ');
+    start = fval [1].find_last_of (' ', end - 1);
+    ram_used = std::stoul (fval [1].substr (start + 1, end - start - 1));
+
+
+    end = fval [2].find_last_of (' ');
+    start = fval [2].find_last_of (' ', end - 1);
+    swap_total = std::stoul (fval [2].substr (start + 1, end - start - 1));
+
+    end = fval [3].find_last_of (' ');
+    start = fval [3].find_last_of (' ', end - 1);
+    swap_used = swap_total - std::stoul (fval [3].substr (start + 1, end - start - 1));
+
+
+
+
+// active is used
+// Active Swap = SwapTotal - SwapFree
+// MemTotal
+// Active
+// SwapTotal
+// SwapFree
+
+
+    return true;
+}
+
+
+unsigned long OS_info::Hardware::get_ram_total () {
+    return ram_total;
+}
+
+
+unsigned long OS_info::Hardware::get_ram_used () {
+    return ram_used;
+}
+
+
+unsigned long OS_info::Hardware::get_swap_total () {
+    return swap_total;
+}
+
+
+unsigned long OS_info::Hardware::get_swap_used () {
+    return swap_used;
+}

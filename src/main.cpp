@@ -57,6 +57,12 @@ int main (int argc, char **argv) {
     }
     
 
+    os_info.hardware.set_ram ();
+    std::cout << "Ram total: " << os_info.hardware.get_ram_total () << "\nRam used: " << os_info.hardware.get_ram_used () << "\nSwap total: " << os_info.hardware.get_swap_total () << "\nSwap used: " << os_info.hardware.get_swap_used () << std::endl; 
+
+
+
+
 
 
 return 0;}

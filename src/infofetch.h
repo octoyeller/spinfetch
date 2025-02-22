@@ -36,16 +36,25 @@ class OS_info {
         bool has_battery;
         int battery_percent;
         std::string battery_status;
+        unsigned long ram_total;         // in KB
+        unsigned long ram_used;          // /proc/meminfo
+        unsigned long swap_total;
+        unsigned long swap_used;
 
         public:
         bool set_battery ();
         void obtain_battery ();
         bool see_if_has_battery ();
+        bool set_ram ();
 
 
         std::string get_name ();
         int get_battery_percent ();
         std::string get_battery_status ();
+        unsigned long get_ram_total ();
+        unsigned long get_ram_used ();
+        unsigned long get_swap_total ();
+        unsigned long get_swap_used ();
 
     };
     Hardware hardware;
