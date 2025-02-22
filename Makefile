@@ -2,18 +2,18 @@ CC = g++
 # Deploy flags
 CF = -std=c++23 -Wall -O3 -funroll-loops -static -flto
 # Development flags
-CF = -std=c++23 -Wall -O0 #-lstdc++   
+CF = -std=c++23 -Wall -O0 -static     #-lstdc++  
 
 
 clean:
 	rm build/*
-	rm spinfetch.bin
+	rm spinfetch
 setup:
 	mkdir build
 fetch:
 	git fetch
 install: setup build
-	cp spinfetch.bin /usr/local/bin/spinfetch
+	cp spinfetch /usr/local/bin/spinfetch
 	mkdir $(HOME)/Desktop/spinfetch
 
 update: clean fetch build
@@ -23,7 +23,7 @@ update: clean fetch build
 
 
 build: main.o console.o binary.o arginterpreter.o infofetch.o printer.o fileloader.o
-	$(CC) $(CF) -o spinfetch.bin build/*
+	$(CC) $(CF) -o spinfetch build/*
 
 
 main.o:
@@ -50,6 +50,6 @@ fileloader.o:
 
 
 
-
+.PHONY: all test clean
 test:
 	$(CC) $(CF) test.cpp -o test
