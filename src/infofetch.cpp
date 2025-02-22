@@ -205,7 +205,7 @@ bool OS_info::Hardware::set_battery () {
     energy_full.seekg (0, std::ios::beg);
     getline (energy_full, cur_line);
     energy_full.close ();
-    int bat_full = std::stoi (cur_line);
+    float bat_full = std::stof (cur_line);
 
 
     std::fstream energy_now;
@@ -217,7 +217,7 @@ bool OS_info::Hardware::set_battery () {
     energy_now.seekg (0, std::ios::beg);
     getline (energy_now, cur_line);
     energy_now.close ();
-    int bat_now = std::stoi (cur_line);
+    float bat_now = std::stof (cur_line);
 
 
     battery_percent = bat_now / bat_full * 100;
