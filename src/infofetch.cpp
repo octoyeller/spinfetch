@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-#include <vector>
 #include <unistd.h>
 #include <sys/sysinfo.h>
 #include <sys/utsname.h>
@@ -25,7 +24,6 @@ void OS_info::System::set_hostname () {
 
 bool OS_info::System::set_os () {
 
-    std::string file_contents [7];
     std::filesystem::path os_rel_path = "/etc/os-release";
     if (!std::filesystem::exists (os_rel_path) ) {
         std::cerr << os_rel_path << " does not exist" << std::endl;
@@ -40,30 +38,63 @@ bool OS_info::System::set_os () {
         std::cerr << "Could not read " << os_rel_path << std::endl;
         return false;
     }
-
     os_rel.seekg (0, std::ios::beg);
-    for (int i = 0; i < 7; ++i) {
-        getline (os_rel, file_contents [i]);
+    
+
+    std::string cur_line;
+    std::string fval [3];
+    while (getline (os_rel, cur_line)) {
+        if ("NAME" == cur_line.substr (0, 4)) {
+            break;
+        }
     }
+    fval [0] = cur_line;
+
+    while (getline (os_rel, cur_line)) {
+        if ("VERSION_ID" == cur_line.substr (0, 10)) {
+            break;
+        }
+    }
+    fval [1] = cur_line;
+
+    while (getline (os_rel, cur_line)) {
+        if ("VERSION_CODENAME" == cur_line.substr (0, 16)) {
+            break;
+        }
+    }
+    fval [2] = cur_line;
+
     os_rel.close ();
 
 
-    size_t first, len;
-    first = file_contents [1].find_first_of ('\"');
-    len = file_contents [1] .find_last_of ('\"') - first;
-    name = file_contents [1].substr (first + 1, len - 1);
-
-    if (name != "Arch Linux") {
-        first = file_contents [2].find_first_of ('\"');
-        len = file_contents [2] .find_last_of ('\"') - first;
-        release = file_contents [2].substr (first + 1, len - 1);
+    
+    size_t start, len;
+    start = 6;
+    len = fval [0].length () - start - 1;
+    name = fval [0].substr (start, len);
+   
+    if (fval [1].npos == fval [1].find ('"')) {
+        start = fval [1].find_first_of ('=') + 1;
+        len = fval [1].length () - start;
     } else {
-        release = "Rolling";
+        start = fval [1].find_first_of ('"') + 1;
+        len = fval [1].find_last_of ('"') - start;
     }
+    release = fval [1].substr (start, len);
+    
+    start = 17;
+    len = fval [2].find_last_of ('"') - start - 1;
+    codename = fval [2].substr (start, len);
 
-    first = file_contents [4].find_first_of ('=');
-    len = file_contents [4].length () - first;
-    codename = file_contents [4].substr (first + 1, len);
+
+
+// NAME
+// VERSION_ID
+// VERSION_CODENAME
+// name
+// release
+// codename
+
 
 
     struct utsname buffer;

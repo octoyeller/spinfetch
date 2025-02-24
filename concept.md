@@ -16,13 +16,13 @@ System info:
 - [ ] display
 - [ ] cpu
 - [ ] gpu
-- [ ] ram
+- [x] ram
 - [ ] disks
 - [ ] ip
 - [ ] shell
 - [ ] theme
 - [ ] desktop environment
-- [ ] battery
+- [x] battery
 
 Additional:
 - Custom text

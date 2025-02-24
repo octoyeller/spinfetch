@@ -17,7 +17,7 @@ int main (int argc, char **argv) {
 
     Binary binary;
     binary.set_version ();
-    binary.print_version ();
+//    binary.print_version ();
 
     Arg_interpreter arg_interpreter (argc, argv);
     arg_interpreter.set_exit_command ();
