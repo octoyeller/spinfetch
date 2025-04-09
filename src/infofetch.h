@@ -40,12 +40,15 @@ class OS_info {
         unsigned long ram_used;          // /proc/meminfo
         unsigned long swap_total;
         unsigned long swap_used;
+        std::string cpu_name;
+        int cpu_cores;
 
         public:
         bool set_battery ();
         void obtain_battery ();
         bool see_if_has_battery ();
         bool set_ram ();
+        bool set_cpu ();
 
 
         std::string get_name ();
@@ -55,6 +58,8 @@ class OS_info {
         unsigned long get_ram_used ();
         unsigned long get_swap_total ();
         unsigned long get_swap_used ();
+        std::string get_cpu_name ();
+        int get_cpu_cores ();
 
     };
     Hardware hardware;
