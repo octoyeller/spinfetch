@@ -14,7 +14,7 @@ System info:
 - [x] system/kernel version
 - [x] uptime
 - [ ] display
-- [ ] cpu
+- [x] cpu
 - [ ] gpu
 - [x] ram
 - [ ] disks
@@ -23,6 +23,8 @@ System info:
 - [ ] theme
 - [ ] desktop environment
 - [x] battery
+- [ ] no aliases
+- [ ] terminal
 
 Additional:
 - Custom text

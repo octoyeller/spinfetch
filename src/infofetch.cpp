@@ -5,6 +5,7 @@
 #include <sys/utsname.h>
 #include <filesystem>
 #include <fstream>
+#include <vector>
 #include "infofetch.h"
 
 
@@ -379,4 +380,73 @@ unsigned long OS_info::Hardware::get_swap_total () {
 
 unsigned long OS_info::Hardware::get_swap_used () {
     return swap_used;
+}
+
+
+
+bool OS_info::Hardware::set_cpu () {
+
+    std::filesystem::path info_path = "/proc/cpuinfo";
+    std::string line;
+    std::string name_line;
+    int core_count = 0;
+
+    if (!std::filesystem::exists (info_path)) {
+        return false;
+    }
+
+
+    std::fstream info_file;
+    info_file.open (info_path, std::ios::in);
+    if (!info_file.good ()) {
+        return false;
+    }
+
+    std::vector <std::string> file_contents;
+    file_contents.reserve (8 * 32);
+
+    info_file.seekg (0, std::ios::beg);
+    while (getline (info_file, line)) {
+        file_contents.emplace_back (line);
+    }
+    info_file.close ();
+
+
+
+    for (std::string line : file_contents) {
+        if ("model name" != line.substr (0, 10)) {
+            continue;
+        }
+
+        size_t pos = line.find (':');
+        if (pos == std::string::npos) {
+            pos = 0;
+        }
+
+        cpu_name = line.substr (pos + 2, std::string::npos);
+        break;
+    }
+
+
+
+    int fsize = file_contents.size ();
+    for (int i = 0; i < fsize; ++i) {
+        if (std::string::npos != file_contents [i].find ("processor")) {
+            ++core_count;
+        }
+    }
+    cpu_cores = core_count;
+
+
+    return true;
+}
+
+
+std::string OS_info::Hardware::get_cpu_name () {
+    return cpu_name;
+}
+
+
+int OS_info::Hardware::get_cpu_cores () {
+    return cpu_cores;
 }
