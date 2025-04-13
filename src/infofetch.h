@@ -42,6 +42,8 @@ class OS_info {
         unsigned long swap_used;
         std::string cpu_name;
         int cpu_cores;
+        unsigned screen_width;
+        unsigned screen_height;
 
         public:
         bool set_battery ();
@@ -49,6 +51,7 @@ class OS_info {
         bool see_if_has_battery ();
         bool set_ram ();
         bool set_cpu ();
+        bool set_screen_resolution ();
 
 
         std::string get_name ();
@@ -60,6 +63,8 @@ class OS_info {
         unsigned long get_swap_used ();
         std::string get_cpu_name ();
         int get_cpu_cores ();
+        unsigned get_screen_width ();
+        unsigned get_screen_height ();
 
     };
     Hardware hardware;

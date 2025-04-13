@@ -6,6 +6,9 @@
 #include <filesystem>
 #include <fstream>
 #include <vector>
+#include <linux/fb.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
 #include "infofetch.h"
 
 
@@ -449,4 +452,43 @@ std::string OS_info::Hardware::get_cpu_name () {
 
 int OS_info::Hardware::get_cpu_cores () {
     return cpu_cores;
+}
+
+
+
+bool OS_info::Hardware::set_screen_resolution () {
+// wanted to use x11 but that shit and linker made enemies for life
+// hopefully ai code wont blow anything up
+
+
+// framebuffer device
+    int fb_fd = open ("/dev/fb0", O_RDONLY);
+    if (fb_fd == -1) {
+        close (fb_fd);
+        return false;
+    }
+
+// get info on buffer
+    struct fb_var_screeninfo vinfo;
+    if (ioctl (fb_fd, FBIOGET_VSCREENINFO, &vinfo)) {
+        close (fb_fd);
+        return false;
+    }
+
+
+    screen_width = vinfo.xres;
+    screen_height = vinfo.yres;
+
+
+    return true;
+}
+
+
+unsigned OS_info::Hardware::get_screen_width () {
+    return screen_width;
+}
+
+
+unsigned OS_info::Hardware::get_screen_height () {
+    return screen_height;
 }

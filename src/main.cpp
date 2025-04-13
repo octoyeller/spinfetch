@@ -64,6 +64,9 @@ int main (int argc, char **argv) {
     os_info.hardware.set_cpu ();
     std::cout << "CPU: " << os_info.hardware.get_cpu_name () << "\nCores: " << os_info.hardware.get_cpu_cores () << std::endl;
 
+    os_info.hardware.set_screen_resolution ();
+    std::cout << "Resolution: " << os_info.hardware.get_screen_width () << " x " << os_info.hardware.get_screen_height () << std::endl;
+
 
 
 

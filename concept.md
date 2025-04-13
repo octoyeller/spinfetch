@@ -13,7 +13,7 @@ System info:
 - [x] OS
 - [x] system/kernel version
 - [x] uptime
-- [ ] display
+- [x] display
 - [x] cpu
 - [ ] gpu
 - [x] ram
