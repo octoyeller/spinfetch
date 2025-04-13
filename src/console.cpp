@@ -36,12 +36,13 @@ bool Console::set_shell () {
         return false;
     }
 
-    std::string tmp = name;
-    size_t offset = tmp.find_last_of ('/');
+    std::string crop = name;
+    size_t offset = crop.find_last_of ('/');
     if (offset) {
         ++offset;
     }
-    shell = tmp.substr (offset);
+
+    shell = crop.substr (offset);
     return true;
 }
 
