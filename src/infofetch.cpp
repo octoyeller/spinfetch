@@ -479,7 +479,7 @@ bool OS_info::Hardware::set_screen_resolution () {
     screen_width = vinfo.xres;
     screen_height = vinfo.yres;
 
-
+    close (fb_fd);
     return true;
 }
 
