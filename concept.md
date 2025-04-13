@@ -19,7 +19,7 @@ System info:
 - [x] ram
 - [ ] disks
 - [ ] ip
-- [ ] shell
+- [x] shell
 - [ ] theme
 - [ ] desktop environment
 - [x] battery

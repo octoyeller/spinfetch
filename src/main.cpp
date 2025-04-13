@@ -13,7 +13,8 @@
 int main (int argc, char **argv) {
 
     Console console;
-    std::cout << console.get_height () << " x " << console.get_width () << std::endl;
+    console.set_shell ();
+    std::cout << console.get_height () << " x " << console.get_width () << "\nShell: " << console.get_shell () << std::endl;
 
     Binary binary;
     binary.set_version ();

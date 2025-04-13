@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <termios.h>
+#include <cstdlib>
 
 
 
@@ -27,6 +28,26 @@ bool Console::set_size () {
 
 
 
+bool Console::set_shell () {
+    
+    const char* name = std::getenv ("SHELL");
+
+    if (!name) {
+        return false;
+    }
+
+    std::string tmp = name;
+    size_t offset = tmp.find_last_of ('/');
+    if (offset) {
+        ++offset;
+    }
+    shell = tmp.substr (offset);
+    return true;
+}
+
+
+
+
 Console::Console () {
     successed = set_size ();
     if (!successed) {
@@ -41,6 +62,10 @@ unsigned Console::get_width () {
 
 unsigned Console::get_height () {
     return height;
+}
+
+std::string Console::get_shell () {
+    return shell;
 }
 
 
