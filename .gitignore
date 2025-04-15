@@ -1,4 +1,4 @@
 spinfetch
 build/*
-test.cpp
-test
+test*
+config/*
